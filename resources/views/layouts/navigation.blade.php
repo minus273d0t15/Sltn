@@ -80,8 +80,14 @@
             </div>
 
             <div class="mt-3 space-y-1">
+                <!-- Profile Link -->
                 <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Profile') }}
+                </x-responsive-nav-link>
+
+                <!-- Preferences Link -->
+                <x-responsive-nav-link :href="route('profile.editPreferences')">
+                    {{ __('Preferences') }}
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->
