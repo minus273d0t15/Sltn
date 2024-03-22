@@ -1,17 +1,22 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+@extends('layouts.custom-app')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("You're logged in!") }}
-                </div>
+@section('content')
+<div class="container mx-auto p-4">
+    <h1 class="text-xl font-bold mb-4">Dashboard</h1>
+    @foreach ($newsItems as $category => $articles)
+        <div class="mb-6">
+            <h2 class="text-lg font-semibold mb-2">{{ ucfirst($category) }}</h2>
+            <div class="space-y-4">
+                @foreach ($articles as $article)
+                    <div class="p-4 bg-white shadow rounded-lg">
+                        <h3 class="font-bold text-md">{{ $article['title'] }}</h3>
+                        <p class="text-sm">{{ $article['description'] }}</p>
+                        <a href="{{ $article['url'] }}" target="_blank" class="text-indigo-500 hover:text-indigo-600 text-sm">Read more</a>
+                    </div>
+                @endforeach
             </div>
         </div>
-    </div>
-</x-app-layout>
+    @endforeach
+</div>
+@endsection
+

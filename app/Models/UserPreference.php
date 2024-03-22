@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class UserPreference extends Model
 {
     protected $fillable = ['user_id', 'categories'];
+    
+    protected $casts = [
+        'categories' => 'array',
+    ];
 
     public function user()
     {
