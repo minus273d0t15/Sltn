@@ -17,22 +17,30 @@ class NewsService
     public function fetchNewsByCategory($category)
     {
         $cacheKey = "news_{$category}";
-
+    
         return Cache::remember($cacheKey, now()->addMinutes(5), function () use ($category) {
             $response = Http::get("{$this->baseUrl}/top-headlines", [
                 'category' => $category,
                 'apiKey' => $this->apiKey,
                 'country' => 'us' // specify the country if required
             ]);
-
+    
             if ($response->successful()) {
-                return $response->json()['articles'];
+                $articles = $response->json()['articles'];
+    
+                // Filter out articles with '[Removed]' in title or content
+                $filteredArticles = array_filter($articles, function ($article) {
+                    return $article['title'] !== '[Removed]' && $article['content'] !== '[Removed]';
+                });
+    
+                return array_values($filteredArticles); // Reset keys after filtering
             } else {
                 logger()->error("Failed to fetch news: " . $response->body());
                 return [];
             }
         });
     }
+    
 
     public function index(NewsService $newsService)
         {

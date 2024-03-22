@@ -19,7 +19,11 @@
                         @endforeach
                     </div>
                 </fieldset>
-        <button type="submit" class="px-4 py-2 bg-indigo-500 hover:bg-indigo-700 text-black font-bold rounded-lg shadow">Save Preferences</button>
-    </form>
+                <div class="flex justify-center mt-4">
+                    <button type="submit" class="px-4 py-2 bg-indigo-500 hover:bg-indigo-700 text-black font-bold rounded-lg shadow border border-gray-800 border-2">Save Preferences</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 @endsection
