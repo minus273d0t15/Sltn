@@ -7,6 +7,10 @@ use App\Models\UserPreference;
 
 class UserController extends Controller
 {
+    protected $casts = [
+        'categories' => 'array',
+    ];
+
     // Display the form for editing user preferences
     public function editPreferences()
     {
@@ -15,8 +19,8 @@ class UserController extends Controller
             ['user_id' => $user->id],
             ['categories' => json_encode([])] // Default to empty categories
         );
-        // Ensure we have an array, even if it's empty
-        $selectedCategories = json_decode($preferences->categories, true) ?: [];
+        // No need to json_decode because 'categories' is already cast to an array
+        $selectedCategories = $preferences->categories ?: [];
     
         return view('profile.preferences', compact('selectedCategories'));
     }
