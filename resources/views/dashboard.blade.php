@@ -25,5 +25,19 @@
         </div>
     @endforeach
 </div>
-@endsection
 
+<div class="fixed bottom-8 right-8 z-50">
+    <button onclick="scrollToTop()" class="bg-indigo-500 hover:bg-indigo-700 text-black font-bold py-2 px-4 rounded-full">
+        Back to Top
+    </button>
+</div>
+
+<script>
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+</script>
+@endsection
